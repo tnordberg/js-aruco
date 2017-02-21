@@ -41,10 +41,11 @@ AR.Detector = function(){
   this.contours = [];
   this.polys = [];
   this.candidates = [];
+  this.invertDetection = false;
 };
 
 AR.Detector.prototype.detect = function(image){
-  CV.grayscale(image, this.grey);
+  CV.grayscale(image, this.grey, this.invertDetection);
   CV.adaptiveThreshold(this.grey, this.thres, 2, 7);
   
   this.contours = CV.findContours(this.thres, this.binary);
